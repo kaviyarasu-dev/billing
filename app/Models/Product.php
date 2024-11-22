@@ -32,4 +32,14 @@ class Product extends Model
             $product->product_id = sprintf('PRD%04d', $nextId);
         });
     }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'product_id';
+    }
 }
