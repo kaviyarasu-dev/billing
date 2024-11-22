@@ -177,6 +177,7 @@ return [
             'rule-name' => 'custom-message',
         ],
     ],
+    'check_quantity' => 'Quantity exceeds available stock.',
 
     /*
     |--------------------------------------------------------------------------
