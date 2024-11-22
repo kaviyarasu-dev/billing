@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\GenerateBillingRequest;
-use App\Mail\SendInvoice;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Contracts\View\View;
 
 class HomeController extends Controller
 {
@@ -14,16 +11,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(): View
     {
         return view('index');
-    }
-
-    public function generateBill(GenerateBillingRequest $request)
-    {
-        dd(123);
-        Mail::to($request->email)->send(new SendInvoice());
-
-        return view('billing', compact('request'));
     }
 }

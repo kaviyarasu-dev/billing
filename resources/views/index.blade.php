@@ -4,6 +4,16 @@
 <h1>Billing Calculation</h1>
 
     <form id="billing-form" action="{{ route('billing.generate') }}" method="POST">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li class="error-message">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         @csrf
         <!-- Customer Details Section -->
         <div class="form-section">
@@ -25,28 +35,32 @@
         <div class="form-section">
             <h3>Denominations</h3>
             <div class="denomination-row">
-                <label>₹500</label>
-                <input type="number" id="denom-500" placeholder="Count">
+                <label for="denom-500">₹500</label>
+                <input type="number" name="denomination[500]" id="denom-500" placeholder="Count" value="0">
             </div>
             <div class="denomination-row">
-                <label>₹200</label>
-                <input type="number" id="denom-200" placeholder="Count">
+                <label for="denom-50">₹50</label>
+                <input type="number" name="denomination[50]" id="denom-50" placeholder="Count" value="0">
             </div>
             <div class="denomination-row">
-                <label>₹100</label>
-                <input type="number" id="denom-100" placeholder="Count">
+                <label for="denom-20">₹20</label>
+                <input type="number" name="denomination[20]" id="denom-20" placeholder="Count" value="0">
             </div>
             <div class="denomination-row">
-                <label>₹50</label>
-                <input type="number" id="denom-50" placeholder="Count">
+                <label for="denom-10">₹10</label>
+                <input type="number" name="denomination[10]" id="denom-10" placeholder="Count" value="0">
             </div>
             <div class="denomination-row">
-                <label>₹20</label>
-                <input type="number" id="denom-20" placeholder="Count">
+                <label for="denom-5">₹5</label>
+                <input type="number" name="denomination[5]" id="denom-5" placeholder="Count" value="0">
             </div>
             <div class="denomination-row">
-                <label>₹10</label>
-                <input type="number" id="denom-10" placeholder="Count">
+                <label for="denom-2">₹2</label>
+                <input type="number" name="denomination[2]" id="denom-2" placeholder="Count" value="0">
+            </div>
+            <div class="denomination-row">
+                <label for="denom-1">₹1</label>
+                <input type="number" name="denomination[1]" id="denom-1" placeholder="Count" value="0">
             </div>
         </div>
 
@@ -54,15 +68,10 @@
         <div class="form-section">
             <h3>Payment</h3>
             <label for="amount-given">Amount Given by Customer:</label>
-            <input type="number" id="amount-given" placeholder="Enter amount">
+            <input type="number" name="paid" id="amount-given" placeholder="Enter amount">
             <button type="submit" id="generate-bill">Generate Bill</button>
         </div>
     </form>
-    <!-- Result Section -->
-    <div id="result" class="result-section" style="display: none;">
-        <h3>Bill Summary</h3>
-        <p id="bill-details"></p>
-    </div>
 @endsection
 
 @section('script')
